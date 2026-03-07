@@ -7,6 +7,7 @@ const rounds = [
     icon: FileText,
     round: "Round 1",
     title: "Online Idea Submission",
+    date: "12 Mar 2026 – 01 Apr 2026",
     items: [
       "Select your domain",
       "Submit 250-word abstract",
@@ -19,6 +20,7 @@ const rounds = [
     icon: Code,
     round: "Round 2",
     title: "24-Hour Hackathon",
+    date: "24 Apr 2026 – 25 Apr 2026",
     items: [
       "Problem statement reveal",
       "Intense coding sprint",
@@ -163,6 +165,13 @@ const TimelineSection = () => {
                         <h3 className="font-semibold text-foreground text-sm md:text-base">
                           {round.title}
                         </h3>
+
+                        {/* Date */}
+                        {round.date && (
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {round.date}
+                          </p>
+                        )}
                       </div>
                     </div>
 

@@ -63,6 +63,19 @@ const teamMembers = [
     role: "Event Logistics Team",
     name: "Prathamesh Mane",
     dept: "Supported volunteer management and logistics."
+  },
+
+  /* ===== NEW MEMBERS ADDED ===== */
+
+  {
+    role: "Hackathon Coordination Team",
+    name: "Arya Nigvekar",
+    dept: "Assisted in coordinating hackathon activities and participant support."
+  },
+  {
+    role: "Hackathon Coordination Team",
+    name: "Manasi Shinde",
+    dept: "Supported hackathon coordination and event execution."
   }
 ];
 
@@ -82,7 +95,6 @@ const BackgroundParticles = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-
       {particles.map((p) => (
         <motion.div
           key={p.id}
@@ -102,7 +114,6 @@ const BackgroundParticles = () => {
           }}
         />
       ))}
-
     </div>
   );
 };
@@ -111,10 +122,7 @@ const BackgroundParticles = () => {
 
 const OurTeamSection = () => {
   return (
-    <section
-      id="team"
-      className="relative py-32 bg-[#051418] overflow-hidden"
-    >
+    <section id="team" className="relative py-32 bg-[#051418] overflow-hidden">
 
       {/* Animated Background */}
 

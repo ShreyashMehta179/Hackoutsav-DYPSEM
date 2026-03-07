@@ -15,7 +15,7 @@ const features = [
   },
   {
     icon: Trophy,
-    title: "₹1L+ Prize Pool",
+    title: "₹50,000+ Prize Pool",
     desc: "Exciting rewards including cash prizes, internships, and swag kits.",
   },
   {
@@ -92,7 +92,7 @@ const AboutSection = () => {
             earn{" "}
             <span className="font-semibold">certifications</span>, and compete
             for an exciting{" "}
-            <span className="font-semibold">prize pool of over ₹1,00,000</span>.
+            <span className="font-semibold">prize pool of 50,000</span>.
           </p>
         </motion.div>
 
