@@ -1,0 +1,56 @@
+/* ================= ROOT CONTAINER ================= */
+
+/* Make the React root container take full width */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================= GLOBAL RESET ================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent layout overflow issues */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ================= MEDIA RESPONSIVENESS ================= */
+
+/* Ensure media never exceeds screen width */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent long text from breaking layout */
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* ================= SMOOTH SCROLL ================= */
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= ROOT VARIABLES ================= */
+
+@layer base {
+  :root {
+    --background: 224 54% 7%;
+    --background-secondary: 221 39% 11%;
+    --foreground: 0 0% 92%;
+
+    --card: 221 39% 11%;
+    --card-foreground: 0 0% 92%;
+
+    --popover: 221 39% 11%;
+    --popover-foreground: 0 0% 92%;
+
+    --primary: 168 100% 48%;
+    --primary-foreground: 224 54% 7%;
+
+    --secondary: 196 100% 50%;
+    --secondary-foreground: 224 54% 7%;
+
+    --muted: 221 39% 16%;
+    --muted-foreground: 218 11% 65%;
+
+    --accent: 29 100% 50%;
+    --accent-foreground: 224 54% 7%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 92%;
+
+    --border: 221 39% 18%;
+    --input: 221 39% 18%;
+    --ring: 168 100% 48%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --neon-cyan: 168 100% 48%;
+    --neon-blue: 196 100% 50%;
+    --neon-orange: 29 100% 50%;
+    --glass-bg: 221 39% 11% / 0.6;
+    --glass-border: 221 39% 30% / 0.3;
+  }
+}
+
+/* ================= GLOBAL BASE ================= */
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  /* Responsive media */
+  img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent text overflow */
+  p, span, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+}
+
+/* ================= COMPONENTS ================= */
+
+@layer components {
+
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/30 rounded-xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)];
+  }
+
+  .neon-text {
+    @apply text-primary;
+    text-shadow:
+      0 0 20px hsl(var(--primary) / 0.5),
+      0 0 40px hsl(var(--primary) / 0.2);
+  }
+
+  .neon-text-blue {
+    @apply text-secondary;
+    text-shadow:
+      0 0 20px hsl(var(--secondary) / 0.5),
+      0 0 40px hsl(var(--secondary) / 0.2);
+  }
+
+  .neon-text-orange {
+    @apply text-accent;
+    text-shadow:
+      0 0 20px hsl(var(--accent) / 0.5),
+      0 0 40px hsl(var(--accent) / 0.2);
+  }
+
+  /* ================= BUTTONS ================= */
+
+  .glow-button {
+    @apply relative overflow-hidden rounded-lg
+    px-6 sm:px-8 py-2.5 sm:py-3
+    font-heading font-bold tracking-wider uppercase
+    transition-all duration-300;
+
+    @apply bg-primary text-primary-foreground;
+
+    @apply hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]
+    hover:scale-105;
+  }
+
+  .glow-button-secondary {
+    @apply relative overflow-hidden rounded-lg
+    px-6 sm:px-8 py-2.5 sm:py-3
+    font-heading font-bold tracking-wider uppercase
+    transition-all duration-300;
+
+    @apply border border-primary/50 text-primary bg-transparent;
+
+    @apply hover:bg-primary/10
+    hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)]
+    hover:scale-105;
+  }
+
+  .glow-button-accent {
+    @apply relative overflow-hidden rounded-lg
+    px-6 sm:px-8 py-2.5 sm:py-3
+    font-heading font-bold tracking-wider uppercase
+    transition-all duration-300;
+
+    @apply bg-accent text-accent-foreground;
+
+    @apply hover:shadow-[0_0_30px_hsl(var(--accent)/0.4)]
+    hover:scale-105;
+  }
+
+  /* ================= SECTION LAYOUT ================= */
+
+  .section-container {
+    @apply max-w-[1200px] mx-auto
+    px-4 sm:px-6 lg:px-8
+    py-16 sm:py-20 md:py-28;
+  }
+
+  .section-title {
+    @apply text-2xl sm:text-3xl md:text-5xl
+    font-heading font-bold text-center mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground
+    text-center text-base sm:text-lg
+    max-w-2xl mx-auto
+    mb-12 sm:mb-16;
+  }
+
+  .gradient-divider {
+    @apply h-px w-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary)),
+      hsl(var(--secondary)),
+      hsl(var(--accent)),
+      transparent
+    );
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    @apply fixed top-0 left-0 h-[3px] z-[100];
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)),
+      hsl(var(--secondary)),
+      hsl(var(--accent))
+    );
+  }
+
+}
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* ================= CUSTOM CURSOR (DESKTOP ONLY) ================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    cursor: none;
+  }
+
+}
