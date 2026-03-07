@@ -213,7 +213,7 @@ const TeamSection = () => {
           transition={{ delay: 0.8 }}
         >
           <a
-            href="#contact"
+            href="https://unstop.com/hackathons/hackoutsav-d-y-patil-school-of-engineering-and-management-dypsem-kolhapur-1653004"
             className="glow-button px-6 py-3 text-sm"
           >
             Register Your Team
