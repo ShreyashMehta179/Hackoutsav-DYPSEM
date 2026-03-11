@@ -9,11 +9,11 @@ const Footer = () => {
           {/* Logo + College */}
           <div>
             <h3 className="font-heading font-bold text-lg neon-text tracking-wider">
-              HACKUTSAV 2026
+              HACKOUTSAV 2026
             </h3>
 
             <p className="text-xs text-muted-foreground mt-1">
-              D. Y. Patil School of Engineering & Management
+              D.Y.Patil School of Engineering & Management
             </p>
           </div>
 
@@ -63,7 +63,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <p className="text-center text-xs text-muted-foreground">
-          © 2026 HackUtsav. All rights reserved.
+          © 2026 HackOutsav. All rights reserved.
         </p>
 
       </div>

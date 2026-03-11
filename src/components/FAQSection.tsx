@@ -9,7 +9,7 @@ import {
 
 const faqs = [
   {
-    q: "Who can participate in HackUtsav 2026?",
+    q: "Who can participate in HackoUtsav 2026?",
     a: "Any currently enrolled student from any college in India can participate. There are no branch or year restrictions.",
   },
   {

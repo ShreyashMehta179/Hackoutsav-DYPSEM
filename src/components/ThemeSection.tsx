@@ -5,7 +5,7 @@ import { Sparkles } from "lucide-react";
 const themes = [
   {
     title: "Innovation as Celebration",
-    desc: "At HackUtsav, every breakthrough is celebrated. We believe the best ideas emerge when creativity flows freely in an atmosphere of excitement and joy.",
+    desc: "At HackoUtsav, every breakthrough is celebrated. We believe the best ideas emerge when creativity flows freely in an atmosphere of excitement and joy.",
   },
   {
     title: "Diversity of Domains",

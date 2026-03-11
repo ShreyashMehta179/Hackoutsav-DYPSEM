@@ -12,6 +12,7 @@ const rounds = [
       "Select your domain",
       "Submit 250-word abstract",
       "Upload PPT presentation",
+      "Upload 2-minute video pitch",
       "Shortlisting by panel",
     ],
     color: "primary" as const,
