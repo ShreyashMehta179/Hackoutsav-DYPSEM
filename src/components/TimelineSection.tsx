@@ -23,8 +23,8 @@ const rounds = [
     title: "24-Hour Hackathon",
     date: "24 Apr 2026 – 25 Apr 2026",
     items: [
-      "Problem statement reveal",
-      "Intense coding sprint",
+      "Open Innovation – Teams bring their own problem statement",
+      "Intense 24-hour coding sprint",
       "Mentor checkpoint reviews",
       "GitHub submission",
       "WiFi, Power & Food provided",
