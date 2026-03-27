@@ -131,7 +131,7 @@ const ContactSection = () => {
 
                 {/* Phone / WhatsApp */}
                 <a
-                  href="#"
+                  href="https://chat.whatsapp.com/K1wdODvb8gTKkm3UnDGWlw?mode=gi_t"
                   className="p-3 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition hover:scale-110"
                 >
                   <Phone size={22} />
