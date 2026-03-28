@@ -7,7 +7,7 @@ const rounds = [
     icon: FileText,
     round: "Round 1",
     title: "Online Idea Submission",
-    date: "12 Mar 2026 – 01 Apr 2026",
+    date: "12 Mar 2026 – 05 Apr 2026",
     items: [
       "Select your domain",
       "Submit 250-word abstract",
