@@ -1,20 +1,27 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Trophy, Medal, Gift } from "lucide-react";
+import { Trophy, Medal, Award, Gift } from "lucide-react";
 
 const prizes = [
   {
     icon: Trophy,
     place: "1st Place",
-    amount: "₹30,000",
+    amount: "₹25,000",
     color: "neon-text-orange",
     winner: true,
   },
   {
     icon: Medal,
     place: "2nd Place",
-    amount: "₹20,000",
+    amount: "₹15,000",
     color: "neon-text-blue",
+    winner: false,
+  },
+  {
+    icon: Award,
+    place: "3rd Place",
+    amount: "₹10,000",
+    color: "text-primary",
     winner: false,
   },
 ];
@@ -73,7 +80,7 @@ const PrizesSection = () => {
 
         {/* Prize Cards */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 max-w-3xl mx-auto mb-14 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 max-w-5xl mx-auto mb-14 sm:mb-16">
 
           {prizes.map((prize, i) => {
             const Icon = prize.icon;
@@ -89,8 +96,6 @@ const PrizesSection = () => {
                 whileHover={{ y: -8, scale: 1.05 }}
               >
 
-                {/* Glow Animation */}
-
                 {prize.winner && (
                   <motion.div
                     className="absolute inset-0 rounded-xl border border-orange-400"
@@ -98,8 +103,6 @@ const PrizesSection = () => {
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                 )}
-
-                {/* Icon */}
 
                 <motion.div
                   animate={{ y: [0, -8, 0] }}

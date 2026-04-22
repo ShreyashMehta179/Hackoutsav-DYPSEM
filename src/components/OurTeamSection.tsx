@@ -11,7 +11,7 @@ const teamMembers = [
   },
   {
     role: "Web Designer & Frontend Developer",
-    name: "Shweta Patil",
+    name: "Saee Nikam",
     dept: "Developed responsive frontend UI and structured the official hackathon website."
   },
   {
@@ -48,11 +48,6 @@ const teamMembers = [
     role: "Design & Media Team",
     name: "Megha Chavan",
     dept: "Supported promotional visuals and event media."
-  },
-  {
-    role: "Participant Support Team",
-    name: "Sanjivani Patil",
-    dept: "Handled participant coordination and support."
   },
   {
     role: "Documentation Team",
