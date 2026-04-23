@@ -7,36 +7,32 @@ const mainLinks = [
   { label: "About", href: "#about" },
   { label: "Journey", href: "#journey" },
   { label: "Domains", href: "#domains" },
-  { label: "Judging", href: "#judging" },
+  { label: "Judging ", href: "#judging" },
   { label: "Contact", href: "#contact" },
 ];
 
 /* MORE MENU LINKS */
 const moreLinks = [
   { label: "Theme", href: "#theme" },
-  { label: "Our Team", href: "#team" },
+  { label: "Organizers", href: "#judges" },
   { label: "Prizes", href: "#prizes" },
   { label: "FAQ", href: "#faq" },
 ];
 
 const Navbar = () => {
-
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
 
   useEffect(() => {
-
     const handleScroll = () => setScrolled(window.scrollY > 40);
 
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-
   }, []);
 
   return (
-
     <motion.nav
       initial={{ y: -80 }}
       animate={{ y: 0 }}
@@ -49,29 +45,26 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-
       {/* Animated Border Line */}
       <motion.div
         className="hidden lg:block absolute bottom-0 left-0 h-[2px] w-full"
         style={{
           background:
-            "linear-gradient(90deg, transparent, #00e6d6, #32e3ff, transparent)"
+            "linear-gradient(90deg, transparent, #00e6d6, #32e3ff, transparent)",
         }}
         animate={{
-          backgroundPosition: ["0% 0%", "100% 0%"]
+          backgroundPosition: ["0% 0%", "100% 0%"],
         }}
         transition={{
           duration: 4,
           repeat: Infinity,
-          ease: "linear"
+          ease: "linear",
         }}
       />
 
       <div className="max-w-[1600px] mx-auto flex items-center justify-between h-[70px] md:h-[90px] px-[clamp(16px,4vw,80px)]">
-
         {/* LOGO */}
         <div className="flex items-center gap-3">
-
           <img
             src="/images/dypsem-logo.png"
             alt="logo"
@@ -79,14 +72,13 @@ const Navbar = () => {
           />
 
           <div className="flex flex-col leading-none">
-
             <span
               style={{
                 fontFamily: "Orbitron",
                 fontSize: "clamp(14px,1.6vw,24px)",
                 letterSpacing: "0.2em",
                 color: "hsl(var(--primary))",
-                textShadow: "0 0 15px hsl(var(--primary)/0.5)"
+                textShadow: "0 0 15px hsl(var(--primary)/0.5)",
               }}
             >
               HACKOUTSAV
@@ -98,27 +90,23 @@ const Navbar = () => {
                 fontSize: "clamp(8px,0.8vw,12px)",
                 letterSpacing: "0.5em",
                 color: "hsl(var(--primary))",
-                opacity: 0.8
+                opacity: 0.8,
               }}
             >
               2026
             </span>
-
           </div>
-
         </div>
 
-        {/* NAVIGATION */}
+        {/* DESKTOP NAV */}
         <div
           className="hidden lg:flex items-center"
           style={{
             gap: "clamp(22px,2vw,42px)",
-            fontFamily: "Orbitron"
+            fontFamily: "Orbitron",
           }}
         >
-
           {mainLinks.map((link) => (
-
             <a
               key={link.href}
               href={link.href}
@@ -126,17 +114,15 @@ const Navbar = () => {
               style={{
                 fontSize: "clamp(12px,0.9vw,16px)",
                 letterSpacing: "0.15em",
-                fontWeight: 600
+                fontWeight: 600,
               }}
             >
               {link.label.toUpperCase()}
             </a>
-
           ))}
 
           {/* MORE MENU */}
           <div className="relative">
-
             <button
               onClick={() => setMoreOpen(!moreOpen)}
               className="text-foreground/80 hover:text-primary px-2"
@@ -145,42 +131,31 @@ const Navbar = () => {
             </button>
 
             <AnimatePresence>
-
               {moreOpen && (
-
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   className="absolute right-0 mt-4 w-44 bg-background border border-border rounded-lg shadow-lg p-3 flex flex-col gap-3"
                 >
-
                   {moreLinks.map((link) => (
-
                     <a
                       key={link.href}
                       href={link.href}
                       onClick={() => setMoreOpen(false)}
                       className="text-sm text-foreground/80 hover:text-primary"
                     >
-                      {link.label}
+                      {link.label.toUpperCase()}
                     </a>
-
                   ))}
-
                 </motion.div>
-
               )}
-
             </AnimatePresence>
-
           </div>
-
         </div>
 
         {/* REGISTER BUTTON */}
         <div className="hidden lg:flex">
-
           <a
             href="https://unstop.com/hackathons/hackoutsav-d-y-patil-school-of-engineering-and-management-dypsem-kolhapur-1653004"
             target="_blank"
@@ -189,12 +164,11 @@ const Navbar = () => {
             style={{
               padding: "clamp(6px,0.6vw,10px) clamp(18px,1.6vw,28px)",
               fontSize: "clamp(12px,0.9vw,14px)",
-              fontFamily: "Orbitron"
+              fontFamily: "Orbitron",
             }}
           >
             REGISTER
           </a>
-
         </div>
 
         {/* MOBILE BUTTON */}
@@ -204,28 +178,22 @@ const Navbar = () => {
         >
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-
       </div>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
-
         {mobileOpen && (
-
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border"
           >
-
             <div
               className="flex flex-col gap-6 p-6 text-center"
               style={{ fontFamily: "Orbitron" }}
             >
-
               {[...mainLinks, ...moreLinks].map((link) => (
-
                 <a
                   key={link.href}
                   href={link.href}
@@ -234,7 +202,6 @@ const Navbar = () => {
                 >
                   {link.label.toUpperCase()}
                 </a>
-
               ))}
 
               <a
@@ -246,17 +213,11 @@ const Navbar = () => {
               >
                 REGISTER
               </a>
-
             </div>
-
           </motion.div>
-
         )}
-
       </AnimatePresence>
-
     </motion.nav>
-
   );
 };
 

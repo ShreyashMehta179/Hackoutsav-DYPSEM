@@ -28,7 +28,6 @@ const prizes = [
 
 const benefits = [
   { icon: Gift, text: "Certificates for All Participants" },
-  { icon: Gift, text: "Internship Opportunities" },
   { icon: Gift, text: "Exclusive Swag Kits" },
 ];
 

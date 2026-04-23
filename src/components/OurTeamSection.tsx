@@ -1,111 +1,83 @@
 import { motion } from "framer-motion";
 import { useMemo } from "react";
 
-/* ================= TEAM DATA ================= */
+/* ================= DATA ================= */
 
-const teamMembers = [
+const organizers = [
   {
-    role: "Web Designer & UI/UX Developer",
-    name: "Shreyash Mehta",
-    dept: "Primary developer of the official hackathon website handling architecture, UI/UX design and implementation."
+    role: "Director",
+    name: "Dr. Ajit Patil",
+    dept: "Director, D. Y. Patil School of Engineering & Management"
   },
   {
-    role: "Web Designer & Frontend Developer",
-    name: "Saee Nikam",
-    dept: "Developed responsive frontend UI and structured the official hackathon website."
+    role: "Registrar",
+    name: "Ashwin Desai",
+    dept: "Registrar, D. Y. Patil School of Engineering & Management"
   },
   {
-    role: "Content Editor & Media Coordinator",
-    name: "Parth Chavan",
-    dept: "Managed documentation, event communication and media content."
-  },
-  {
-    role: "Event Operations Coordinator",
-    name: "Rupesh Patil",
-    dept: "Handled operational workflow and execution planning."
-  },
-  {
-    role: "Event Operations Coordinator",
-    name: "Shreyash Desai",
-    dept: "Supported event logistics and hackathon operations."
-  },
-  {
-    role: "Technical Support Team",
-    name: "Aditya Nikam",
-    dept: "Provided technical assistance during hackathon operations."
-  },
-  {
-    role: "Innovation Screening Team",
-    name: "Prajval Injar",
-    dept: "Assisted in idea review and innovation screening."
-  },
-  {
-    role: "Technical Operations Volunteer",
-    name: "Shrivardhan Bhosale",
-    dept: "Helped manage hackathon technical setup."
-  },
-  {
-    role: "Design & Media Team",
-    name: "Megha Chavan",
-    dept: "Supported promotional visuals and event media."
-  },
-  {
-    role: "Documentation Team",
-    name: "Shruti Powar",
-    dept: "Managed communication and documentation."
-  },
-  {
-    role: "Event Logistics Team",
-    name: "Prathamesh Mane",
-    dept: "Supported volunteer management and logistics."
-  },
-
-  /* ===== NEW MEMBERS ADDED ===== */
-
-  {
-    role: "Hackathon Coordination Team",
-    name: "Arya Nigvekar",
-    dept: "Assisted in coordinating hackathon activities and participant support."
-  },
-  {
-    role: "Hackathon Coordination Team",
-    name: "Manasi Shinde",
-    dept: "Supported hackathon coordination and event execution."
+    role: "Faculty Coordinator",
+    name: "Dr.Vinayak Pujari",
+    dept: "Faculty Member, D. Y. Patil School of Engineering & Management"
   }
 ];
 
-/* ================= BACKGROUND PARTICLES ================= */
+const judges = [
+  {
+    role: "Industry Judge",
+    name: "Dr. Rituraj Patil",
+    dept: "Director of TMT ISG at Zensar"
+  },
+  {
+    role: "Industry Judge",
+    name: "Vishal Ranadive",
+    dept: "Manager – Walstar Technologies Pvt. Ltd."
+  },
+  {
+    role: "Industry Judge",
+    name: "Shailesh Hari Dinde",
+    dept: "QA Automation Lead, Aiotlogy Service Pvt. Ltd., Bengaluru"
+  },
+  {
+    role: "Industry Judge",
+    name: "Ritesh Bakare",
+    dept: "Software Engineer @ Zensar Technologies"
+  },
+  
+];
 
-const BackgroundParticles = () => {
-  const particles = useMemo(() => {
+/* ================= PARTICLES ================= */
+
+const SparkleBackground = () => {
+  const sparkles = useMemo(() => {
     if (typeof window === "undefined") return [];
-    return Array.from({ length: 25 }, (_, i) => ({
+
+    return Array.from({ length: 30 }, (_, i) => ({
       id: i,
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      duration: 8 + Math.random() * 6,
-      delay: Math.random() * 5
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 5,
+      duration: 2 + Math.random() * 2
     }));
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
-      {particles.map((p) => (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {sparkles.map((item) => (
         <motion.div
-          key={p.id}
-          className="absolute w-[2px] h-[2px] bg-cyan-300 rounded-full"
-          initial={{ x: p.x, y: p.y, opacity: 0 }}
+          key={item.id}
+          className="absolute w-[2px] h-[2px] rounded-full bg-primary"
+          style={{
+            left: `${item.x}%`,
+            top: `${item.y}%`
+          }}
           animate={{
-            y: [p.y, p.y - 120],
-            opacity: [0, 0.6, 0]
+            opacity: [0, 1, 0],
+            scale: [0.5, 1.4, 0.5]
           }}
           transition={{
-            duration: p.duration,
+            duration: item.duration,
             repeat: Infinity,
-            delay: p.delay
-          }}
-          style={{
-            boxShadow: "0 0 6px rgba(0,255,224,0.4)"
+            delay: item.delay
           }}
         />
       ))}
@@ -113,168 +85,191 @@ const BackgroundParticles = () => {
   );
 };
 
-/* ================= TEAM SECTION ================= */
+/* ================= CARD ================= */
+
+const MemberCard = ({
+  role,
+  name,
+  dept
+}: {
+  role: string;
+  name: string;
+  dept: string;
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="
+        h-full
+        min-h-[320px]
+        rounded-3xl
+        border
+        border-primary/20
+        bg-background/60
+        backdrop-blur-xl
+        p-7
+        flex
+        flex-col
+      "
+    >
+      {/* ROLE */}
+      <div
+        className="
+          inline-flex
+          items-center
+          gap-2
+          px-4
+          py-2
+          rounded-full
+          w-fit
+          border
+          border-primary/20
+          bg-primary/5
+          text-primary
+          text-[10px]
+          uppercase
+          tracking-[0.28em]
+        "
+        style={{ fontFamily: "Orbitron, sans-serif" }}
+      >
+        <span className="w-2 h-2 rounded-full bg-primary" />
+        {role}
+      </div>
+
+      {/* CONTENT */}
+      <div className="flex-1 flex flex-col justify-center">
+        <h3
+          className="text-white text-2xl md:text-3xl font-semibold mt-6 leading-tight"
+          style={{ fontFamily: "Orbitron, sans-serif" }}
+        >
+          {name}
+        </h3>
+
+        <p
+          className="
+            mt-5
+            text-sm
+            md:text-base
+            text-muted-foreground
+            leading-7
+            border-l-2
+            border-primary/30
+            pl-4
+          "
+          style={{ fontFamily: "Rajdhani, sans-serif" }}
+        >
+          {dept}
+        </p>
+      </div>
+
+      {/* LINE */}
+      <motion.div
+        className="h-[2px] rounded-full mt-6 bg-primary"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{
+          duration: 2,
+          repeat: Infinity
+        }}
+      />
+    </motion.div>
+  );
+};
+
+/* ================= SECTION TITLE ================= */
+
+const SectionTitle = ({
+  title,
+  borderColor
+}: {
+  title: string;
+  borderColor: string;
+}) => {
+  return (
+    <div className="text-center mb-16">
+      <h2
+        className="text-4xl md:text-6xl font-bold tracking-[0.08em]"
+        style={{
+          fontFamily: "Orbitron, sans-serif",
+          color: borderColor
+        }}
+      >
+        {title}
+      </h2>
+
+      <div
+        className="w-40 h-[3px] mx-auto mt-6 rounded-full"
+        style={{ backgroundColor: borderColor }}
+      />
+    </div>
+  );
+};
+
+/* ================= MAIN ================= */
 
 const OurTeamSection = () => {
   return (
-    <section id="team" className="relative py-32 bg-[#051418] overflow-hidden">
-
-      {/* Animated Background */}
-
+    <section
+      id="judges"
+      className="relative py-32 overflow-hidden bg-background"
+    >
+      {/* BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background-secondary" />
 
-        {/* Radial Glow Pulse */}
-
-        <motion.div
+        <div
           className="absolute inset-0"
-          animate={{
-            scale: [1, 1.05, 1],
-            opacity: [0.2, 0.35, 0.2]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity
-          }}
           style={{
             background:
-              "radial-gradient(circle at center, rgba(0,255,224,0.15), transparent 70%)"
+              "radial-gradient(circle at center, hsl(var(--primary) / 0.08), transparent 60%)"
           }}
         />
 
-        {/* Floating Particles */}
-
-        <BackgroundParticles />
-
+        <SparkleBackground />
       </div>
 
-      <div className="relative max-w-[1400px] mx-auto px-6">
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-[1500px] mx-auto px-6">
+        
+        {/* ORGANIZERS */}
+        <div className="mb-28 border border-primary/20 rounded-3xl p-8 md:p-12 bg-background/40 backdrop-blur-xl">
+          <SectionTitle
+            title="ORGANIZERS"
+            borderColor="hsl(var(--primary))"
+          />
 
-        {/* TITLE */}
-
-        <div className="text-center mb-24">
-
-          <h2
-            className="text-5xl md:text-6xl font-bold tracking-[0.35em]"
-            style={{
-              fontFamily: "Orbitron, sans-serif",
-              background: "linear-gradient(90deg,#00e6d6,#32e3ff)",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
-            }}
-          >
-            OUR TEAM
-          </h2>
-
-          <p className="text-gray-400 mt-5 text-sm max-w-xl mx-auto">
-            Meet the passionate individuals powering our mission.
-            Together we redefine collaboration and innovation.
-          </p>
-
-          <div className="w-40 h-[2px] bg-cyan-400/60 mx-auto mt-6" />
-
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 auto-rows-fr">
+            {organizers.map((member) => (
+              <MemberCard
+                key={member.name}
+                role={member.role}
+                name={member.name}
+                dept={member.dept}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* TEAM GRID */}
+        {/* JUDGES */}
+        <div className="border border-blue-400/20 rounded-3xl p-8 md:p-12 bg-background/40 backdrop-blur-xl">
+          <SectionTitle
+            title="JUDGES"
+            borderColor="#60a5fa"
+          />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-
-          {teamMembers.map((member) => (
-
-            <div
-              key={member.name}
-              className="
-              relative
-              rounded-2xl
-              p-[1px]
-              bg-gradient-to-r
-              from-cyan-400/30
-              to-teal-300/30
-              "
-            >
-
-              {/* CARD */}
-
-              <div
-                className="
-                h-full
-                w-full
-                rounded-2xl
-                p-8
-                bg-gradient-to-br
-                from-[#0c2a2e]
-                via-[#0a353a]
-                to-[#05191c]
-                backdrop-blur-lg
-                flex
-                flex-col
-                justify-between
-                "
-              >
-
-                {/* ROLE */}
-
-                <div
-                  className="
-                  inline-flex
-                  items-center
-                  gap-2
-                  text-[11px]
-                  tracking-[0.25em]
-                  px-4
-                  py-1
-                  rounded-full
-                  border
-                  border-cyan-400/30
-                  text-cyan-300
-                  w-fit
-                  "
-                  style={{
-                    fontFamily: "Orbitron, sans-serif"
-                  }}
-                >
-                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                  {member.role}
-                </div>
-
-                {/* NAME */}
-
-                <h3
-                  className="text-xl font-semibold mt-5 text-white"
-                  style={{
-                    fontFamily: "Orbitron, sans-serif",
-                    letterSpacing: "0.08em",
-                    textShadow: "0 0 6px rgba(0,255,224,0.35)"
-                  }}
-                >
-                  {member.name}
-                </h3>
-
-                {/* DESCRIPTION */}
-
-                <p
-                  className="
-                  text-sm
-                  text-gray-300
-                  mt-4
-                  border-l-2
-                  border-cyan-400/30
-                  pl-4
-                  leading-relaxed
-                  "
-                  style={{
-                    fontFamily: "Rajdhani, sans-serif",
-                    letterSpacing: "0.04em"
-                  }}
-                >
-                  {member.dept}
-                </p>
-
-              </div>
-
-            </div>
-
-          ))}
-
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 auto-rows-fr">
+            {judges.map((member) => (
+              <MemberCard
+                key={member.name}
+                role={member.role}
+                name={member.name}
+                dept={member.dept}
+              />
+            ))}
+          </div>
         </div>
 
       </div>
