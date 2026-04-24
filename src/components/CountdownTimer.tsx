@@ -1,52 +1,98 @@
 import { useState, useEffect } from "react";
 
 interface TimeLeft {
-  days: number;
   hours: number;
   minutes: number;
   seconds: number;
 }
 
-/* Hackathon starts on 24 April 2026 at 9:00 AM IST */
-const TARGET_DATE = new Date("2026-04-24T09:00:00+05:30");
+/*
+Hackathon starts:
+24 April 2026 - 9:00 AM IST
+
+Hackathon ends:
+25 April 2026 - 9:00 AM IST
+*/
+
+const START_DATE = new Date("2026-04-24T09:00:00+05:30");
+const END_DATE = new Date("2026-04-25T09:00:00+05:30");
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const [isBeforeStart, setIsBeforeStart] = useState(true);
   const [isLive, setIsLive] = useState(false);
+  const [isEnded, setIsEnded] = useState(false);
 
   useEffect(() => {
     const calculateTime = () => {
       const now = new Date().getTime();
-      const difference = TARGET_DATE.getTime() - now;
 
-      if (difference <= 0) {
-        setIsLive(true);
-        setTimeLeft(null);
+      const start = START_DATE.getTime();
+      const end = END_DATE.getTime();
+
+      // Before event starts
+      if (now < start) {
+        setIsBeforeStart(true);
+        setIsLive(false);
+        setIsEnded(false);
+
+        const difference = start - now;
+
+        const hours = Math.floor(
+          difference / (1000 * 60 * 60)
+        );
+
+        const minutes = Math.floor(
+          (difference / (1000 * 60)) % 60
+        );
+
+        const seconds = Math.floor(
+          (difference / 1000) % 60
+        );
+
+        setTimeLeft({
+          hours,
+          minutes,
+          seconds,
+        });
+
         return;
       }
 
-      const days = Math.floor(
-        difference / (1000 * 60 * 60 * 24)
-      );
+      // During hackathon (24 Hours)
+      if (now >= start && now < end) {
+        setIsBeforeStart(false);
+        setIsLive(true);
+        setIsEnded(false);
 
-      const hours = Math.floor(
-        (difference / (1000 * 60 * 60)) % 24
-      );
+        const difference = end - now;
 
-      const minutes = Math.floor(
-        (difference / (1000 * 60)) % 60
-      );
+        const hours = Math.floor(
+          difference / (1000 * 60 * 60)
+        );
 
-      const seconds = Math.floor(
-        (difference / 1000) % 60
-      );
+        const minutes = Math.floor(
+          (difference / (1000 * 60)) % 60
+        );
 
-      setTimeLeft({
-        days,
-        hours,
-        minutes,
-        seconds,
-      });
+        const seconds = Math.floor(
+          (difference / 1000) % 60
+        );
+
+        setTimeLeft({
+          hours,
+          minutes,
+          seconds,
+        });
+
+        return;
+      }
+
+      // Event ended
+      setIsBeforeStart(false);
+      setIsLive(false);
+      setIsEnded(true);
+      setTimeLeft(null);
     };
 
     calculateTime();
@@ -56,39 +102,46 @@ const CountdownTimer = () => {
     return () => clearInterval(interval);
   }, []);
 
-  /* LIVE MODE */
+  if (!timeLeft && !isEnded) return null;
 
-  if (isLive) {
+  // Event Ended
+  if (isEnded) {
     return (
-      <div className="flex items-center justify-center gap-3">
-        <span className="w-3 h-3 rounded-full bg-primary animate-pulse" />
-
-        <span className="font-heading text-xl sm:text-2xl md:text-3xl neon-text tracking-wider text-center">
-          Hackathon Live Now 🚀
-        </span>
+      <div className="text-center font-heading text-2xl neon-text">
+        Hackathon Completed 🎉
       </div>
     );
   }
 
-  if (!timeLeft) return null;
-
   const blocks = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
+    { label: "Hours", value: timeLeft?.hours ?? 0 },
+    { label: "Minutes", value: timeLeft?.minutes ?? 0 },
+    { label: "Seconds", value: timeLeft?.seconds ?? 0 },
   ];
 
   return (
     <div className="flex flex-col items-center gap-5">
-
-      {/* Event Date */}
+      {/* Title */}
 
       <p className="text-xs sm:text-sm md:text-base text-muted-foreground uppercase tracking-[0.2em] text-center">
-        Starts on 24 April 2026 • 9:00 AM IST
+        {isBeforeStart
+          ? "Hackathon Starts On 24 April • 9:00 AM IST"
+          : "Hackathon Ends On 25 April • 9:00 AM IST"}
       </p>
 
-      {/* Countdown Boxes */}
+      {/* Live Badge */}
+
+      {isLive && (
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full bg-primary animate-pulse" />
+
+          <span className="font-heading text-lg sm:text-xl neon-text">
+            Live • 24 Hour Countdown 🚀
+          </span>
+        </div>
+      )}
+
+      {/* Timer */}
 
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
         {blocks.map((block) => (
@@ -100,9 +153,7 @@ const CountdownTimer = () => {
               px-4 py-3
               sm:px-5 sm:py-4
               md:px-6 md:py-5
-              min-w-[70px]
-              sm:min-w-[80px]
-              md:min-w-[100px]
+              min-w-[90px]
             "
           >
             <div className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold neon-text">
